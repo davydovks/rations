@@ -1,0 +1,8 @@
+- ration_name: Мясное питание
+  cooking_day_before: true
+
+- ration_name: Вегетарианский
+  cooking_day_before: false
+
+- ration_name: Среднеазиатская кухня
+  cooking_day_before: true
