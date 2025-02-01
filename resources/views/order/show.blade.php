@@ -9,6 +9,8 @@
         <p><span class="attribute">Дата создания</span>{{ $order->created_at }}</p>
         <p><span class="attribute">Начальная дата</span>{{ $order->first_date }}</p>
         <p><span class="attribute">Конечная дата</span>{{ $order->last_date }}</p>
+        <p><span class="attribute">Комментарий</span></p>
+        <textarea name="comment" readonly>{{ $order->comment }}</textarea>
 
         <h2>Рационы</h2>
         <table>
