@@ -1,8 +1,8 @@
 <x-layout>
     <div class="grid">
-        <h1 class="text-3xl mb-5">Список заказов</h1>
+        <h1>Заказы</h1>
         <table>
-            <thead class="border-b-2 border-solid border-black text-left">
+            <thead>
                 <th>ID</th>
                 <th>Клиент</th>
                 <th>Телефон</th>
@@ -15,7 +15,7 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>
-                            <a href="/orders/{{ $order->id }}" class="flex hover:text-blue-600 hover:underline">{{ $order->client_name }}</a>
+                            <a href="/orders/{{ $order->id }}" class="flex">{{ $order->client_name }}</a>
                         </td>
                         <td>{{ $order->client_phone }}</td>
                         <td>{{ $order->tariff->ration_name }}</td>
