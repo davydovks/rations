@@ -15,7 +15,7 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>
-                            <a href="/order/{{ $order->id }}" class="flex hover:text-blue-600 hover:underline">{{ $order->client_name }}</a>
+                            <a href="/orders/{{ $order->id }}" class="flex hover:text-blue-600 hover:underline">{{ $order->client_name }}</a>
                         </td>
                         <td>{{ $order->client_phone }}</td>
                         <td>{{ $order->tariff->ration_name }}</td>
