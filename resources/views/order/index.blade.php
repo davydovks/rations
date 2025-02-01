@@ -1,6 +1,7 @@
 <x-layout>
     <div class="grid">
         <h1>Заказы</h1>
+        <a href="/orders/create" class="btn mr-auto mb-5">Создать</a>
         <table>
             <thead>
                 <th>ID</th>
