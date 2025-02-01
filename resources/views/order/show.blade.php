@@ -1,7 +1,7 @@
 <x-layout>
     <div class="grid">
         <h1><a href="/orders/" class="link">Заказы</a> > Просмотр</h1>
-        <p><span class="attribute">ID</span>{{ $order->id }}</p>
+        <p><span class="attribute">№ заказа</span>{{ $order->id }}</p>
         <p><span class="attribute">Клиент</span>{{ $order->client_name }}</p>
         <p><span class="attribute">Телефон</span>{{ $order->client_phone }}</p>
         <p><span class="attribute">Рацион</span>{{ $order->tariff->ration_name }}</p>
