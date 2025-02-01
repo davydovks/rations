@@ -14,5 +14,6 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         Order::factory(4)->create();
+        Order::each(fn($order) => $order->createRations());
     }
 }
