@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-a {
+.link {
     @apply text-blue-600 hover:underline
 }
 
