@@ -7,6 +7,7 @@
                 <th>Клиент</th>
                 <th>Телефон</th>
                 <th>Рацион</th>
+                <th>Количество</th>
                 <th>Начальная дата</th>
                 <th>Конечная дата</th>
             </thead>
@@ -19,6 +20,7 @@
                         </td>
                         <td>{{ $order->client_phone }}</td>
                         <td>{{ $order->tariff->ration_name }}</td>
+                        <td>{{ count($order->rations) }}</td>
                         <td>{{ $order->first_date }}</td>
                         <td>{{ $order->last_date }}</td>
                     </tr>
