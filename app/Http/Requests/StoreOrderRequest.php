@@ -22,10 +22,24 @@ class StoreOrderRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
+        [$firstDate, $lastDate] = array_reduce($this->daterange, function ($carry, $range) {
+            if (empty($range)) {
+                return $carry;
+            }
+            $dates = explode(' - ', $range);
+            if (empty($carry)) {
+                return $dates;
+            }
+            return [
+                min($carry[0], $dates[0]),
+                max($carry[1], $dates[1])
+            ];
+        });
         $this->merge([
             'client_phone' => preg_replace('/[^\d]/', '', $this->client_phone),
-            'first_date' => Carbon::now()->toDateString(),
-            'last_date' => Carbon::tomorrow()->toDateString(),
+            'first_date' => $firstDate,
+            'last_date' => $lastDate,
+            'daterange' => array_filter($this->daterange, fn($item) => $item != null),
         ]);
     }
 

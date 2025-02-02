@@ -34,6 +34,7 @@ class OrderController extends Controller
         $data = $request->validated();
         $order = new Order($data);
         $order->save();
+        $order->createRationsFromRanges($data['daterange']);
         return redirect()->route('orders.index');
     }
 }

@@ -14,6 +14,9 @@ class Order extends Model
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
 
+    private ?int $rationsPerDay;
+    private ?int $cycle;
+
     /**
      * The attributes that are mass assignable.
      */
@@ -59,25 +62,47 @@ class Order extends Model
 
     public function createRations()
     {
-        switch ($this->schedule_type) {
-            case ScheduleType::EveryDay->value:
-                $rationsPerDay = 1;
-                $cycle = 1;
-                break;
-            case ScheduleType::EveryOtherDay->value:
-                $rationsPerDay = 1;
-                $cycle = 2;
-                break;
-            case ScheduleType::EveryOtherDayTwice->value:
-                $rationsPerDay = 2;
-                $cycle = 2;
-                break;
-        }
+        $this->applyScheduleType();
 
         $firstDate = Carbon::parse($this->first_date);
         $lastDate = Carbon::parse($this->last_date);
-        for ($date = $firstDate; $date->diffInDays($lastDate)>=0; $date->addDays($cycle)) {
-            $count = $date->diffInDays($lastDate) == 0 ? 1 : $rationsPerDay;
+        $this->createRationsFromDates($firstDate, $lastDate);
+    }
+
+    public function createRationsFromRanges(array $dateranges)
+    {
+        $this->applyScheduleType();
+
+        foreach ($dateranges as $range) {
+            $dates = explode(' - ', $range);
+            $firstDate = Carbon::createFromFormat('Y.m.d',$dates[0]);
+            $lastDate = Carbon::createFromFormat('Y.m.d',$dates[1]);
+            $this->createRationsFromDates($firstDate, $lastDate);
+        }
+    }
+
+    private function applyScheduleType() 
+    {
+        switch ($this->schedule_type) {
+            case ScheduleType::EveryDay:
+                $this->rationsPerDay = 1;
+                $this->cycle = 1;
+                break;
+            case ScheduleType::EveryOtherDay:
+                $this->rationsPerDay = 1;
+                $this->cycle = 2;
+                break;
+            case ScheduleType::EveryOtherDayTwice:
+                $this->rationsPerDay = 2;
+                $this->cycle = 2;
+                break;
+        }
+    }
+
+    private function createRationsFromDates(Carbon $startDate, Carbon $endDate)
+    {
+        for ($date = $startDate; $date->diffInDays($endDate)>=0; $date->addDays($this->cycle)) {
+            $count = $date->diffInDays($endDate) == 0 ? 1 : $this->rationsPerDay;
             Ration::factory($count)
                 ->for($this)
                 ->create([
