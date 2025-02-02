@@ -20,7 +20,7 @@
                 <th>Дата доставки</th>
             </thead>
             <tbody>
-                @foreach ($order->rations as $ration)
+                @foreach ($rations as $ration)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $ration->cooking_date }}</td>

@@ -16,7 +16,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('order.show', compact('order'));
+        $rations = $order->rations()->orderBy('delivery_date')->get();
+        return view('order.show', compact('order', 'rations'));
     }
 
     public function create()
