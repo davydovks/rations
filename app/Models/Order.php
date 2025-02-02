@@ -35,7 +35,7 @@ class Order extends Model
     protected function casts(): array
     {
         return [
-            'scheduleType' => ScheduleType::class,
+            'schedule_type' => ScheduleType::class,
         ];
     }
 
