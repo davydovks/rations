@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('client_phone', 11)->unique();
             $table->foreignIdFor(Tariff::class);
             $table->string('schedule_type', 21);
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->date('first_date');
             $table->date('last_date');
             $table->timestamps();
