@@ -25,3 +25,9 @@ thead {
 .btn {
     @apply px-6 py-3 rounded bg-slate-600 text-white text-sm leading-4 font-bold whitespace-nowrap hover:bg-slate-500 focus:bg-slate-500;
 }
+
+form input[type="text"],
+form select,
+form textarea {
+    @apply rounded border-gray-300 border mb-2 p-1 w-80
+}
