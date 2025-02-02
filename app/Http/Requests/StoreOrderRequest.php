@@ -23,7 +23,7 @@ class StoreOrderRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'client_phone' => preg_replace('/[^\d,.]/', '', $this->client_phone),
+            'client_phone' => preg_replace('/[^\d]/', '', $this->client_phone),
             'first_date' => Carbon::now()->toDateString(),
             'last_date' => Carbon::tomorrow()->toDateString(),
         ]);
