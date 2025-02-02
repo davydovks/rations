@@ -2,7 +2,7 @@ start:
 	php artisan serve --host 0.0.0.0
 
 start-frontend:
-	npm start
+	npm run dev
 
 setup: env-prepare install key prepare-db
 	npm run build
