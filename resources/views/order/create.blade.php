@@ -25,6 +25,12 @@
             {{ html()->textarea('comment') }}
             <br>
 
+            <h2>Расписания доставки</h2>
+            <div id="periods">
+                <input type="text" name="daterange[]" data-num="1" /><br>
+                <x-error name="daterange" />
+            </div>
+
             {{ html()->submit("Сохранить")->class('btn mt-5') }}
         {{ html()->form()->close() }}
     </div>

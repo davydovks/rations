@@ -44,6 +44,7 @@ class StoreOrderRequest extends FormRequest
             'comment' => 'string|nullable',
             'first_date' => 'required|string',
             'last_date' => 'required|string',
+            'daterange' => 'required|array',
         ];
     }
 }
