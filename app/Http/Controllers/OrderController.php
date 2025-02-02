@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Models\Tariff;
 
@@ -27,5 +28,12 @@ class OrderController extends Controller
             'EVERY_OTHER_DAY_TWICE' => 'Доставка через день на 2 дня',
         ];
         return view('order.create', compact('tariffs', 'scheduleTypes'));
+    }
+
+    public function store(StoreOrderRequest $request) {
+        $data = $request->validated();
+        $order = new Order($data);
+        $order->save();
+        return redirect()->route('orders.index');
     }
 }

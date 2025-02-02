@@ -15,6 +15,19 @@ class Order extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'client_name',
+        'client_phone',
+        'tariff_id',
+        'schedule_type',
+        'comment',
+        'first_date',
+        'last_date',
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
